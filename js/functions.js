@@ -1,15 +1,24 @@
 const grid = document.querySelector('.grid')
 const startButton = document.getElementById('start')
 const scoreDisplay = document.getElementById('score')
+const gridSizeSubmit = document.getElementById('gridSizeSubmit')
+const overlayHandler = document.getElementsByClassName('overlay')
+const gridSize = document.getElementById('gridSize')
+const mainContainer = document.querySelector('.main-container')
 let squares = []
 let currentSnake = [2,1,0]
 let direction = 1
-const width = 10
+const unitSquareSize = 20 // Values has to be same with width/height values of css .square class
 let appleIndex = 0
 let score = 0
 let intervalTime = 1000
 let speed = 0.9
 let timerId = 0
+let width = 10
+
+
+
+
 
 function createGrid() {
     //create 100 of these elements with a for loop
@@ -24,9 +33,19 @@ function createGrid() {
     squares.push(square)
     }
 }
-createGrid()
 
-currentSnake.forEach(index => squares[index].classList.add('snake'))
+gridSizeSubmit.addEventListener('click', function(){
+    overlayHandler[0].style.display = 'none'
+    width = gridSize.value / unitSquareSize
+    grid.style.width = gridSize.value
+    grid.style.height = gridSize.value
+    mainContainer.style.width = gridSize.value
+    createGrid()
+    currentSnake.forEach(index => squares[index].classList.add('snake'))
+    generateApple()
+})
+
+
 
 function startGame() {
     //remove the snake
@@ -88,14 +107,8 @@ function move() {
         timerId = setInterval(move, intervalTime)
     }
     
-    
-    
     squares[currentSnake[0]].classList.add('snake')
 }
-
-
-
-
 
 
 function generateApple() {
@@ -104,7 +117,7 @@ function generateApple() {
     } while (squares[appleIndex].classList.contains('snake'))
     squares[appleIndex].classList.add('apple')
 } 
-generateApple()
+
 
 // 39 is right arrow
 // 38 is for the up arrow
@@ -126,5 +139,7 @@ function control(e) {
         direction = +width
     }
 }
+
+
 document.addEventListener('keyup', control)
 startButton.addEventListener('click', startGame)

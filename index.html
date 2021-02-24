@@ -3,10 +3,24 @@
         <link rel="stylesheet" href="style/style.css">
     </head>
     <body>
-        <h1>Snake Game</h1>
-        <button id="start">Start/Restart</button>
-        <h2>Score <span id="score"></span></h2>
-        <div class="grid"></div>
+        <div class="main-container">
+            <h1>Snake Game</h1>
+            <button id="start">Start/Restart</button>
+            <h2>Score <span id="score"></span></h2>
+            <div class="grid"></div>
+            
+        </div>
+
+        <div class="overlay">
+            <div class="modal">
+                <h1>Welcome to the Snake Game</h1>
+                <form class="grid-input">
+                    <input id="gridSize" type="number" step="100" min="200" placeholder="Please enter grid size"/>
+                    <button type="button" id="gridSizeSubmit">Let's start</button>
+                </form>
+            </div>
+        </div>
+
         <script src="js/functions.js"></script>
     </body>
 </html>

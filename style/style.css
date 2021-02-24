@@ -1,6 +1,6 @@
 html, body {
-    margin: 10;
-    padding: 10;
+    margin: 0;
+    padding: 0;
 }
 
 .grid {
@@ -22,4 +22,24 @@ html, body {
 
 .apple {
     background-color: blue;
+}
+
+.main-container {
+    margin:0 auto;
+    width:200px;
+}
+
+.overlay {
+    background-color: rgba(0, 0, 0, 0.7);
+    position: absolute;
+    top:0px;
+    bottom:0px;
+    right:0px;
+    left:0px;
+}
+
+.modal{
+    color:#fff;
+    text-align: center;
+
 }
