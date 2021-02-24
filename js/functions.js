@@ -4,7 +4,7 @@ const scoreDisplay = document.getElementById('score')
 const gridSizeSubmit = document.getElementById('gridSizeSubmit')
 const overlayHandler = document.getElementsByClassName('overlay')
 const gridSize = document.getElementById('gridSize')
-const mainContainer = document.querySelector('.main-container')
+const gameContainer = document.querySelector('.game-container')
 let squares = []
 let currentSnake = [2,1,0]
 let direction = 1
@@ -39,7 +39,7 @@ gridSizeSubmit.addEventListener('click', function(){
     width = gridSize.value / unitSquareSize
     grid.style.width = gridSize.value
     grid.style.height = gridSize.value
-    mainContainer.style.width = gridSize.value
+    gameContainer.style.width = gridSize.value
     createGrid()
     currentSnake.forEach(index => squares[index].classList.add('snake'))
     generateApple()

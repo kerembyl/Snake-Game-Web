@@ -29,9 +29,22 @@ html, body {
 
 .main-container {
     margin:0 auto;
-    width:200px;
+    display: flex;
+    justify-content: center;
 }
 
+.game-container {
+    width:200px;
+    padding:15px
+}
+
+.highscore-container {
+    padding:170px 15px 15px 50px;
+}
+
+.highscore-container li{
+    margin:10px;
+}
 .overlay {
     background-color: rgba(0, 0, 0, 1);
     position: absolute;
@@ -48,8 +61,8 @@ html, body {
 
 }
 
-.main-container h1 {
-    padding-top:15px
+.main-container {
+   
 }
 
 #gridSizeSubmit {
@@ -74,7 +87,7 @@ html, body {
 
 #start{
     outline: none;
-    padding:15px 35px;
+    padding:10px 15px;
     border: 1px solid green;
     border-radius: 10px;
     font-family: inherit;
