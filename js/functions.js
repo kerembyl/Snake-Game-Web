@@ -17,9 +17,6 @@ let timerId = 0
 let width = 10
 
 
-
-
-
 function createGrid() {
     //create 100 of these elements with a for loop
     for (let i=0; i < width*width; i++) {
@@ -34,17 +31,15 @@ function createGrid() {
     }
 }
 
-gridSizeSubmit.addEventListener('click', function(){
-    overlayHandler[0].style.display = 'none'
-    width = gridSize.value / unitSquareSize
-    grid.style.width = gridSize.value
-    grid.style.height = gridSize.value
+function setGridSize(){
+    width = gridSize.value / unitSquareSize  //set snake grid
+    grid.style.width = gridSize.value   //set grid css width
+    grid.style.height = gridSize.value  //set grid css height 
     gameContainer.style.width = gridSize.value
     createGrid()
     currentSnake.forEach(index => squares[index].classList.add('snake'))
-    generateApple()
-})
-
+    overlayHandler[0].style.display = 'none'  //close overlay screen
+}
 
 
 function startGame() {
@@ -58,11 +53,15 @@ function startGame() {
     //re add new score to browser
     scoreDisplay.textContent = score
     direction = 1
-    intervalTime = 1000
+    intervalTime = 800
     generateApple()
     //read the class of snake to our new currentSnake
     currentSnake.forEach(index => squares[index].classList.add('snake'))
     timerId = setInterval(move, intervalTime)
+}
+
+function gameOver() {
+    clearInterval(timerId)
 }
 
 function move() {
@@ -72,8 +71,10 @@ function move() {
         (currentSnake[0] % width === 0 && direction === -1) || //if snake has hit left wall
         (currentSnake[0] - width < 0 && direction === -width) || //if snake has hit top
         squares[currentSnake[0] + direction].classList.contains('snake')
-    )
-    return clearInterval(timerId)
+    ){
+        return gameOver()
+    }
+    
 
     //remove last element from currentSnake array
     const tail = currentSnake.pop()
@@ -101,9 +102,7 @@ function move() {
         scoreDisplay.textContent = score
         //speed up the snake
         clearInterval(timerId)
-        console.log(intervalTime)
         intervalTime = intervalTime * speed
-        console.log(intervalTime)
         timerId = setInterval(move, intervalTime)
     }
     
@@ -114,8 +113,8 @@ function move() {
 function generateApple() {
     do {
         appleIndex = Math.floor(Math.random() * squares.length)
+        squares[appleIndex].classList.add('apple')
     } while (squares[appleIndex].classList.contains('snake'))
-    squares[appleIndex].classList.add('apple')
 } 
 
 
@@ -143,3 +142,4 @@ function control(e) {
 
 document.addEventListener('keydown', control)
 startButton.addEventListener('click', startGame)
+gridSizeSubmit.addEventListener('click', setGridSize)
