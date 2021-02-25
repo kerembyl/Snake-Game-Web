@@ -5,6 +5,7 @@ const gridSizeSubmit = document.getElementById('gridSizeSubmit')
 const overlayHandler = document.getElementsByClassName('overlay')
 const gridSize = document.getElementById('gridSize')
 const gameContainer = document.querySelector('.game-container')
+const scoreList = document.querySelector('.score-list')
 let squares = []
 let currentSnake = [2,1,0]
 let direction = 1
@@ -62,6 +63,9 @@ function startGame() {
 
 function gameOver() {
     clearInterval(timerId)
+    const savedScore = document.createElement('li')
+    savedScore.textContent = score
+    scoreList.appendChild(savedScore)
 }
 
 function move() {
