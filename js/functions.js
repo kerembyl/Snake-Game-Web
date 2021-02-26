@@ -115,10 +115,12 @@ function move() {
 
 
 function generateApple() {
-    do {
+    appleIndex = Math.floor(Math.random() * squares.length) //initiate
+    while (squares[appleIndex].classList.contains('snake')){  //keep generating new apple location until it does not interfere with snake
         appleIndex = Math.floor(Math.random() * squares.length)
-        squares[appleIndex].classList.add('apple')
-    } while (squares[appleIndex].classList.contains('snake'))
+    }  
+    squares[appleIndex].classList.add('apple')
+    
 } 
 
 
